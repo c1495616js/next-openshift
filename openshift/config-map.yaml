@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextjs-configmap
+  namespace: default # Specify your namespace here if needed
+data:
+  # Configuration settings as key-value pairs
+  config.json: |
+    {
+      "key": "value"
+    }
