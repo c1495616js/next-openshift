@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: ubi8-nextjs
+  labels:
+    app: ubi8-nextjs
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/c1495616js/next-openshift
+    contextDir:
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile # Look for Dockerfile in: gitUri/contextDir/dockerfilePath
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ubi8-nextjs:latest
