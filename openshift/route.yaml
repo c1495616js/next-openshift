@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: nextjs-route
+  namespace: fe64f4-dev
+spec:
+  to:
+    kind: Service
+    name: nextjs-service
+  port:
+    targetPort: web

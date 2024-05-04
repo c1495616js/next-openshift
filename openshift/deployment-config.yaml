@@ -1,0 +1,31 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: nextjs-app
+  namespace: fe64f4-dev
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - nextjs-app
+        from:
+          kind: ImageStreamTag
+          name: ubi8-nextjs:latest
+          namespace: fe64f4-tools
+  replicas: 1
+  selector:
+    app: nextjs-app
+  template:
+    metadata:
+      labels:
+        app: nextjs-app
+    spec:
+      containers:
+        - name: nextjs-app
+          image: ubi8-nextjs:latest
+          ports:
+            - containerPort: 3000
