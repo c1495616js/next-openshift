@@ -1,5 +1,6 @@
-apiVersion: route.openshift.io/v1
+# big lesson: must set the tls part
 kind: Route
+apiVersion: route.openshift.io/v1
 metadata:
   name: nextjs-route
   namespace: fe64f4-dev
@@ -9,3 +10,7 @@ spec:
     name: nextjs-service
   port:
     targetPort: web
+  weight: 100
+  tls:
+    termination: edge
+wildcardPolicy: None
